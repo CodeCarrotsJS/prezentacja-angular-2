@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>GGC AngularJS</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -50,10 +50,180 @@
 			<div class="slides">
 				<section>
 					<h1>Code Carrots</h1>
-					<h3>Zajęcia z programowania w języku JavaScript</h3>
+					<h2>AngularJS</h2>
+					<h3>Framework do Single Page Webapps</h3>
 					<p>
-						<small>Ogranizatorka zajęć: <a target="_blank" href="mailto:zuzapodwinska@gmail.com">Zuza Podwińska</a></small>
+						<small>Prowadzący: <a target="_blank" href="mailto:michal.matulka@protonmail.ch">Michał Matulka</a></small>
 					</p>
+				</section>
+				<section>
+					<h2>Framework - co to takiego?</h2>
+				</section>
+				<section>
+					<h2>Architektura MVW</h2>
+					<img src="http://m.memegen.com/8jdwe0.jpg" style="border: 0px" />
+				</section>
+				<section>
+					<h2>Elementy architektury AngularJS</h2>
+					<ul>
+						<li>Dwukierunkowe wiązanie danych</li>
+						<li>Wstrzykiwanie zależności</li>
+						<li>Podział odpowiedzialności</li>
+						<li>"Testowalność"</li>
+						<li>Abstrakcja</li>
+					</ul>
+					<p style="font-weight: bold">Bardzo dużo bardzo mądrych słów :D</p>
+				</section>
+				<section>
+					<h2>Funkcje Angulara</h2>
+					<ul>
+						<li>Partiale</li>
+						<li>Kontrolery</li>
+						<li>Dyrektywy</li>
+						<li>Serwisy</li>
+						<li>Filtry</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Partiale</h2>
+					<pre><code contenteditable="true" class="html">
+<div ng-controller="mainController as main">
+    <ul>
+        <li ng-repeat="question in main.questions">{{ question.content }}</li>
+    </ul>
+</div>
+</code></pre>
+				</section>
+				<section>
+					<h2>Partiale</h2>
+					<pre><code contenteditable="true" class="html">
+<div ng-controller="mainController as main">
+</div>
+</code></pre>
+				</section>
+				<section>
+					<h2>Kontrolery</h2>
+					<pre><code contenteditable="true" class="javascript">
+var app = angular.module('quiz', []);
+
+app.constroller('mainController', function () {
+    this.questions = [
+        {text: 'Pytanie 1', answers: [ {text: 'test'}, {text: 'test2'} ]},
+        {text: 'Pytanie 2', answers: [ {text: 'test3'}, {text: 'test4'} ]}
+    ];
+});
+</code></pre>
+				</section>
+				<section>
+					<h2>Dyrektywy</h2>
+					<pre><code contenteditable="true" class="html">
+<div ng-controller="mainController as main">
+    <ul>
+        <li ng-repeat="question in main.questions"><input type="radio" ng-change="changeCurrentAnswer()" /> {{ question.content }}</li>
+    </ul>
+</div>
+</code></pre>
+				</section>
+				<section>
+						<pre><code contenteditable="true" class="html">
+&lt;div ng-app=""&gt;
+    <p>Wpisz coś! :) <input type="text" ng-model="cos"></p>
+    <h3>Wpisano: {{ cos }}</h3>
+&lt;/div&gt;
+</code></pre>
+					<div ng-app="">
+						<p>Wpisz coś! :) <input type="text" ng-model="cos"></p>
+						<p>Wpisano: {{ cos }}</p>
+					</div>
+				</section>
+				<section>
+					<h2>Wstawianie tekstu i wyrażeń</h2>
+					<pre><code contenteditable="true" class="html">
+&lt;div ng-app=""&gt;
+    <p>{{ "Mój tekst" }}</p>
+&lt;/div&gt;
+</code></pre>
+					<pre><code contenteditable="true" class="html">
+&lt;div ng-app=""&gt;
+    <p>{{ 3 + 5 }}</p>
+&lt;/div&gt;
+</code></pre>
+				</section>
+				<section>
+					<h2>Tworzenie aplikacji</h2>
+					<pre><code contenteditable="true" class="javascript">
+var mojaAppka = angular.module('mojaAppka', []);
+</code></pre>
+					<pre><code contenteditable="true" class="html">
+&lt;div ng-app="mojaAppka"&gt;
+&lt;/div&gt;
+</code></pre>
+				</section>
+				<section>
+					<h2>Tworzenie kontrolera</h2>
+					<pre><code contenteditable="true" class="javascript">
+var mojaAppka = angular.module('mojaAppka', []);
+
+angular.controller('mojKontroler', function () {
+});
+</code></pre>
+					<pre><code contenteditable="true" class="html">
+&lt;div ng-app="mojaAppka"&gt;
+&lt;/div&gt;
+</code></pre>
+					<p>Każda zmienna przekazana do kontekstu (this) będzie dostępna w widoku do użycia w wyrażeniach oraz dyrektywach.</p>
+					<p style="font-style: italic">Funkcja też jest zmienną!</p>
+				</section>
+				<section>
+					<h2>Zadanie 1</h2>
+					<p>Przypisz do kontekstu w kontrolerze zmienną o wartości "Witaj świecie" i dowolnej nazwie, następnie wyświetl jej wartość w partialu.</p>
+				</section>
+				<section>
+					<h2>Zadanie 2</h2>
+					<p>Poniżej wyświetlonej zmiennej utwórz pole typu "text" i utwórz mu dyrektywę</p>
+					<pre><code contenteditable="true">
+ng-model="twoja_nazwa_zmiennej"
+</code></pre>
+				</section>
+				<section>
+					<h2>Obiekty i tablice</h2>
+					<pre><code contenteditable="true" class="javascript">
+var mojaAppka = angular.module('mojaAppka', []);
+
+angular.controller('mojKontroler', function () {
+    this.obiekt = {
+        pierwszaWlasnosc: 'jeden',
+	drugaWlasnosc: 'dwa'
+    };
+
+    this.tablica = ['a', 'b', 'c'];
+});
+</code></pre>
+					<pre><code contenteditable="true" class="html">
+&lt;div ng-app="mojaAppka"&gt;
+    <p>{{ obiekt.pierwszaWlasnosc }}</p>
+    <p>{{ tablica[1] }}</p>
+&lt;/div&gt;
+</code></pre>
+				</section>
+				<section>
+					<h2>Instrukcja ng-repeat</h2>
+					<pre><code contenteditable="true" class="javascript">
+var mojaAppka = angular.module('mojaAppka', []);
+
+angular.controller('mojKontroler', function () {
+    this.tablica = ['a', 'b', 'c'];
+});
+</code></pre>
+					<pre><code contenteditable="true" class="html">
+&lt;div ng-app="mojaAppka"&gt;
+    <p ng-repeat="literka in tablica">{{ literka }}</p>
+&lt;/div&gt;
+</code></pre>
+				</section>
+				<section>
+					<h2>Zadanie 4</h2>
+					<p>Wykorzystując dotychczasową wiedzę utwórz w kontrolerze strukturę danych zawierającą pytania z odpowiedziami, przekaż ją do widoku i wyświetl. Musi być możliwość zmiany liczby pytań oraz odpowiedzi w dowolnym pytaniu bez potrzeby zmiany widoku.</p>
 				</section>
 			</div>
 
@@ -91,6 +261,7 @@
 			});
 
 		</script>
-
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+		<script src="angular_app.js"></script>
 	</body>
 </html>
